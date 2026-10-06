@@ -47,12 +47,18 @@ function updateHeroVisibility() {
 
 function updateFeaturesVisibility() {
   const featureOverlay = document.querySelector('.features-overlay');
+  const partLabels = document.querySelector('.part-labels');
   if (!featureOverlay) return;
 
   const revealAtPercent = 0.35;
   const hideAtPercent = 0.75;
   const shouldShow = scrollProgress >= maxScroll * revealAtPercent && scrollProgress < maxScroll * hideAtPercent;
   featureOverlay.classList.toggle('is-hidden', !shouldShow);
+
+  if (partLabels) {
+    const shouldRevealLabels = scrollProgress >= maxScroll * hideAtPercent;
+    partLabels.classList.toggle('is-visible', shouldRevealLabels);
+  }
 }
 
 function syncScrollVisuals() {
