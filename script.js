@@ -1,9 +1,15 @@
 const imageNames = Array.from({ length: 240 }, (_, index) => {
-  const frame = String(index + 1).padStart(3, '0   ');
+  const frame = String(index + 1).padStart(3, '0');
   return `assets/ezgif-frame-${frame}.png`;
 });
 
 const scrollVideo = document.getElementById('scrollVideo');
+if (scrollVideo) {
+  scrollVideo.loading = 'eager';
+  scrollVideo.src = imageNames[0];
+  scrollVideo.setAttribute('data-current-frame', '0');
+}
+
 const totalFrames = imageNames.length;
 const maxScroll = 5000;
 let scrollProgress = 0;
